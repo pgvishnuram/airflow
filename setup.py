@@ -468,8 +468,13 @@ slack = [
     'slack_sdk>=3.0.0,<4.0.0',
 ]
 snowflake = [
-    'snowflake-connector-python>=2.4.1',
-    'snowflake-sqlalchemy>=1.1.0',
+    # Snowflake connector 2.7.2 requires pyarrow >=6.0.0 but apache-beam requires < 6.0.0
+    # We should remove the limitation when apache-beam upgrades pyarrow
+    'snowflake-connector-python>=2.4.1,<2.7.2',
+    # The snowflake-alchemy 1.2.5 introduces a hard dependency on sqlalchemy>=1.4.0, but they didn't define
+    # this requirements in setup.py, so pip cannot figure out the correct set of dependencies.
+    # See: https://github.com/snowflakedb/snowflake-sqlalchemy/issues/234
+    'snowflake-sqlalchemy>=1.1.0,!=1.2.5',
 ]
 spark = [
     'pyspark',
@@ -505,7 +510,7 @@ winrm = [
     'pywinrm~=0.4',
 ]
 yandex = [
-    'yandexcloud>=0.97.0',
+    'yandexcloud>=0.122.0',
 ]
 zendesk = [
     'zdesk',
@@ -518,7 +523,10 @@ zendesk = [
 # mypyd which does not support installing the types dynamically with --install-types
 mypy_dependencies = [
     'mypy==0.910',
+    'types-boto',
+    'types-certifi',
     'types-croniter',
+    'types-Deprecated',
     'types-docutils',
     'types-freezegun',
     'types-paramiko',
@@ -531,6 +539,7 @@ mypy_dependencies = [
     'types-setuptools',
     'types-termcolor',
     'types-tabulate',
+    'types-toml',
     'types-Markdown',
     'types-PyMySQL',
     'types-PyYAML',

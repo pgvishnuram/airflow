@@ -48,6 +48,13 @@ Changes in webserver and flower ``NetworkPolicy`` default ports
 
 The defaults for ``webserver.networkPolicy.ingress.ports`` and ``flower.networkPolicy.ingress.ports`` moved away from using named ports to numerical ports to avoid issues with OpenShift.
 
+``ingress.web.hosts`` and ``ingress.flower.hosts`` parameters data type has changed and ``ingress.web.tls`` and ``ingress.flower.tls`` have moved
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+``ingress.web.hosts`` and ``ingress.flower.hosts`` have had their types have been changed from an array of strings to an array of objects. ``ingress.web.tls`` and ``ingress.flower.tls`` can now be specified per host in ``ingress.web.hosts`` and ``ingress.flower.hosts`` respectively.
+
+The old parameter names will continue to work, however support for them will be removed in a future release so please update your values file.
+
 Airflow Helm Chart 1.3.0
 ------------------------
 
