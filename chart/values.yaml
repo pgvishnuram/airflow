@@ -2846,6 +2846,10 @@ dags:
     #   cpu: 100m
     #   memory: 128Mi
 
+    livenessProbe: {}
+
+    readinessProbe: {}
+
 logs:
   # Configuration for empty dir volume (if logs.persistence.enabled == false)
   # emptyDirConfig:
